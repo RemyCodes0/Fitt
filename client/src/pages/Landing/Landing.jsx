@@ -1,30 +1,30 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import productTop from "@/assets/product-top.jpg";
 import productBottom from "@/assets/product-bottom.jpg";
 import productShoes from "@/assets/product-shoes.jpg";
 import productAccessory from "@/assets/product-accessory.jpg";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Fitt — Describe your vibe. We'll build the look." },
-      {
-        name: "description",
-        content:
-          "Fitt is an AI personal stylist. Describe how you want to look and get a complete outfit sourced from real retailers like Zara, ASOS, Uniqlo and more.",
-      },
-      { property: "og:title", content: "Fitt — Describe your vibe. We'll build the look." },
-      {
-        property: "og:description",
-        content:
-          "AI-powered fashion discovery. Describe an occasion, mood, or vibe — get a complete, coordinated outfit you can buy right now.",
-      },
-      { property: "og:type", content: "website" },
-    ],
-  }),
-  component: Landing,
-});
+// export const Route = createFileRoute("/")({
+//   head: () => ({
+//     meta: [
+//       { title: "Fitt — Describe your vibe. We'll build the look." },
+//       {
+//         name: "description",
+//         content:
+//           "Fitt is an AI personal stylist. Describe how you want to look and get a complete outfit sourced from real retailers like Zara, ASOS, Uniqlo and more.",
+//       },
+//       { property: "og:title", content: "Fitt — Describe your vibe. We'll build the look." },
+//       {
+//         property: "og:description",
+//         content:
+//           "AI-powered fashion discovery. Describe an occasion, mood, or vibe — get a complete, coordinated outfit you can buy right now.",
+//       },
+//       { property: "og:type", content: "website" },
+//     ],
+//   }),
+//   component: Index,
+// });
 
 const examplePrompts = [
   "Summer wedding in Tuscany",
@@ -82,7 +82,7 @@ const retailers = [
   { name: "H&M", role: "Staples Partner" },
 ];
 
-export function Landing() {
+const Landing = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState(
     "A tech interview in Berlin. Professional but creative.",
@@ -91,7 +91,7 @@ export function Landing() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!query.trim()) return;
-    navigate({ to: "/auth", search: { redirect: "/chat", prompt: query } });
+   navigate(`/auth?redirect=/chat&prompt=${encodeURIComponent(query)}`);
   };
 
   return (
@@ -364,4 +364,4 @@ export function Landing() {
   );
 }
 
-
+export default Landing;
