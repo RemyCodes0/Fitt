@@ -349,7 +349,7 @@ export default function ChatPage() {
                     <span className="truncate flex-1">{c.title}</span>
                     <span
                       role="button"
-                      tabIndex={0}
+                      tabIndex={0} 
                       onClick={(e) => { e.stopPropagation(); handleDelete(c.id); }}
                       onKeyDown={(e) => e.key === "Enter" && (e.stopPropagation(), handleDelete(c.id))}
                       className="opacity-0 group-hover:opacity-100 p-1 hover:text-destructive transition-all"
